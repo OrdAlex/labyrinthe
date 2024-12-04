@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hall Principal - Ninja Heist</title>
+    <style>
+        body {
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+            background-color: #f0f0f0;
+            color: #333;
+            padding: 20px;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: #fffcdb;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            border-radius: 16px;
+            border: 3px solid #ffb703;
+        }
+        .hidden-link {
+            display: none;
+        }
+        .hint {
+            color: #ff006e;
+            font-style: italic;
+            margin-top: 20px;
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+            margin-bottom: 20px;
+            border-radius: 16px;
+            border: 3px solid #ffb703;
+        }
+        button {
+            background-color: #ff006e;
+            color: #fff;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: #d9045a;
+        }
+        input[type="text"] {
+            padding: 10px;
+            border: 2px solid #ffb703;
+            border-radius: 8px;
+            margin-right: 10px;
+            font-size: 16px;
+        }
+    </style>
+    <script>
+        function solvePuzzle() {
+            // XOR-based encryption key approach
+            //key is hexadecimal
+            const key = 5;
+            const answerInput = document.getElementById('answer').value;
+            let decrypted = '';
+
+            for (let i = 0; i < answerInput.length; i++) {
+                decrypted += String.fromCharCode(answerInput.charCodeAt(i) ^ key);
+            }
+
+            if (decrypted === 'secret') {
+                document.getElementById('hidden-link').style.display = 'inline-block';
+            } else {
+                alert('Réponse incorrecte. Essayez encore.');
+            }
+        }
+    </script>
+</head>
+<body>
+<div class="container">
+    <h1>Hall Principal</h1>
+    <img src=".images/main-hall.webp" alt="Ninja dans le hall principal de la banque">
+    <p>Vous avez réussi à entrer dans le hall principal de la banque. Félicitations ! Mais votre chemin vers la "Carte du Monstre Générique" n'est pas encore terminé. Ici, dans le hall principal, la sécurité est renforcée et le chemin vers les bureaux est verrouillé par une énigme.</p>
+    <p>Pour continuer, vous devez résoudre un défi cryptographique. Entrez une phrase qui, une fois décryptée à l'aide d'un algorithme XOR, permettra de déverrouiller la prochaine étape.</p>
+    <input type="text" id="answer" placeholder="Entrez votre réponse ici">
+    <button onclick="solvePuzzle()">Valider la réponse</button>
+    <a href=".offices.html" id="hidden-link" class="hidden-link">Continuer vers les Bureaux</a>
+    <p class="hint">Indice technique : Le décryptage est basé sur un simple XOR avec une clé. Le bon message déchiffré est 'secret'.</p>
+</div>
+</body>
+</html>
